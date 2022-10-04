@@ -30,9 +30,9 @@ function Graph() {
         <div className='d-flex flex-column align-items-center'>
             <div className='d-flex flex-column justify-content-start align-items-center position-relative mb-5'>
                 <Doughnut {...config}></Doughnut>
-                <h3 className='chart-title mx-auto position-absolute fs-5 fw-bold'>
+                <h3 className='chart-title mx-auto position-absolute fs-5'>
                     Total
-                    <span className='d-block fs-3'>${0}</span>
+                    <span className='d-block fs-3 fw-bold' style={{ color: "#50C878" }}>${0}</span>
                 </h3>
             </div>
             <div className='d-flex flex-column justify-content-start align-items-center'>
