@@ -12,8 +12,8 @@
 }
 
 body {
-  box-sizing: border-box;
-  background-color: rgba(228, 227, 227, 0.425);
+  box-sizing: border-box !important;
+  background-color: rgba(228, 227, 227, 0.425) !important;
 }
 
 .main-div {
@@ -28,8 +28,11 @@ ul li {
   list-style: none;
 }
 
-.App {
-  padding: 4em 0;
+
+
+.custom-header {
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 14px 28px,
+    rgba(0, 0, 0, 0.02) 0px 10px 10px;
 }
 
 .bg-yellow {

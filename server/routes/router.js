@@ -13,4 +13,7 @@ router.route('/api/transactions')
 router.route('/transactions/:id')
     .delete(transactionController.deleteTransaction);
 
+router.route('/api/labels')
+    .get(transactionController.getLabels);
+
 module.exports = router;
