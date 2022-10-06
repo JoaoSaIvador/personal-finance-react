@@ -3,7 +3,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
 import Labels from './Labels/Labels';
 import apiSlice from '../store/apiSlice';
-import { chart_Data, getTotal } from '../helper/helper';
+import { chartData, getTotal } from '../helper/helper';
 
 Chart.register(ArcElement);
 
@@ -14,7 +14,7 @@ function Graph() {
     if (isFetching) {
         graphData = <div>Fetching</div>;
     } else if (isSuccess) {
-        graphData = <Doughnut {...chart_Data(data)}></Doughnut>;
+        graphData = <Doughnut {...chartData(data)}></Doughnut>;
     } else if (isError) {
         graphData = <div>Error</div>;
     }

@@ -3,21 +3,24 @@ import _ from 'lodash';
 export function getSum(transaction, type) {
     let sum = _(transaction)
         .groupBy("type")
-        .map((objs, key) => {
-            if (!type) return _.sumBy(objs, 'amount');
+        .map((transactions, key) => {
+            if (!type) {
+                return _.sumBy(transactions, 'amount');
+            }
+
             return {
                 'type': key,
-                'color': objs[0].color,
-                'total': _.sumBy(objs, 'amount')
+                'color': transactions[0].color,
+                'total': _.sumBy(transactions, 'amount')
             };
         })
         .value();
     return sum;
 }
 
-export function getLabels(transaction) {
-    let amountSum = getSum(transaction, 'type');
-    let Total = _.sum(getSum(transaction));
+export function getLabels(transactions) {
+    let amountSum = getSum(transactions, 'type');
+    let Total = _.sum(getSum(transactions));
 
     let percent = _(amountSum)
         .map(objs => _.assign(objs, { percent: (100 * objs.total) / Total }))
@@ -26,7 +29,7 @@ export function getLabels(transaction) {
     return percent;
 }
 
-export function chart_Data(transaction, custom) {
+export function chartData(transaction, custom) {
 
     let bg = _.map(transaction, a => a.color);
     bg = _.uniq(bg);
@@ -48,7 +51,6 @@ export function chart_Data(transaction, custom) {
     };
 
     return custom ?? config;
-
 }
 
 export function getTotal(transaction) {
