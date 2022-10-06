@@ -1,30 +1,23 @@
 import React from 'react';
 import Label from './Label';
-
-const labels = [
-    {
-        type: "Savings",
-        color: '#f9c74f',
-        percent: 45
-    },
-    {
-        type: "Investment",
-        color: 'rgb(54, 162, 235)',
-        percent: 20
-    },
-    {
-        type: "Expense",
-        color: 'rgb(255, 99, 132)',
-        percent: 10
-    },
-];
+import apiSlice from '../../store/apiSlice';
+import { getLabels } from '../../helper/helper';
 
 function Labels() {
+    const { data, isFetching, isSuccess, isError } = apiSlice.useGetLabelsQuery();
+    let Transactions;
+
+    if (isFetching) {
+        Transactions = <div>Fetching</div>;
+    } else if (isSuccess) {
+        Transactions = getLabels(data, 'type').map((label, index) => <Label label={label} key={index} />);
+    } else if (isError) {
+        Transactions = <div>Error</div>;
+    }
+
     return (
         <div className='d-flex flex-column align-items-start'>
-            {
-                labels.map((label, index) => <Label label={label} key={index} />)
-            }
+            {Transactions}
         </div>
     );
 }

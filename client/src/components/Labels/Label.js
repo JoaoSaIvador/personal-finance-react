@@ -7,7 +7,7 @@ function Label({ label }) {
                 <div className='label-pill me-1' style={{ backgroundColor: label.color ?? '#f9c74f' }}></div>
                 <h3 className='fs-6 m-0'>{label.type}</h3>
             </div>
-            <h3 className='fs-6 fw-bold'>{label.percent}%</h3>
+            <h3 className='fs-6 fw-bold'>{Math.round(label.percent)}%</h3>
         </div>
     );
 }

@@ -10,7 +10,7 @@ router.route('/api/transactions')
     .get(transactionController.getTransactions)
     .post(transactionController.createTransaction);
 
-router.route('/transactions/:id')
+router.route('/api/transactions/:id')
     .delete(transactionController.deleteTransaction);
 
 router.route('/api/labels')

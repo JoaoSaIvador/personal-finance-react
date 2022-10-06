@@ -34,12 +34,12 @@ const transactionController = {
         }
     },
     getLabels: async (req, res) => {
-        model.Transaction.aggregate([
+        Transaction.aggregate([
             {
                 $lookup: {
                     from: "categories",
                     localField: 'type',
-                    foreignField: "type",
+                    foreignField: "name",
                     as: "categories_info"
                 }
             },
@@ -47,7 +47,7 @@ const transactionController = {
                 $unwind: "$categories_info"
             }
         ]).then(result => {
-            let data = result.map(v => Object.assign({}, { _id: v._id, name: v.name, type: v.type, amount: v.amount, color: v.categories_info['color'] }));
+            let data = result.map(v => Object.assign({}, { _id: v._id, name: v.name, type: v.type, amount: v.amount, date: v.date, color: v.categories_info['color'] }));
             res.json(data);
         }).catch(error => {
             res.status(400).json("Lookup Collection Error");
